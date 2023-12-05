@@ -1,11 +1,12 @@
 ﻿using System.Net.Http;
 using System.Text.Json.Nodes;
 
-namespace APIRequest
+namespace waterlocator.Models
 {
-    class Program
+    class APIRequest
     {
-        static void Main(string[] args)
+        public Water water;
+        public void Start()
         {
             //coordinates
             string Northern_most = @"32.874699";
@@ -25,16 +26,20 @@ namespace APIRequest
             string waterservicesURIRelative = @$"nwis/site/?format=gm&bBox={Western_most},{Southern_most},{Eastern_most},{Northern_most}&siteStatus=all";
 
             //Call Fetch
-            Fetch(waterservicesBaseAddr, waterservicesURIRelative, waterservicesOutFile).Wait();
+            this.Fetch(waterservicesBaseAddr, waterservicesURIRelative).Wait();
 
         }
-        static async Task Fetch(string baseAddress, string urlRelative, string outFilePath)
+
+        private async Task Fetch(string baseAddress, string urlRelative)
         {
             try
             {
+                Water waterloc = new Water();
                 FetchRequest apiFetch = new FetchRequest(baseAddress, urlRelative);
-                await apiFetch.GetAsync(outFilePath);
-                Console.WriteLine($"Result: \n{apiFetch.result}");
+                this.water = await apiFetch.GetAsync();
+
+                Console.WriteLine($"Water: \n{waterloc}");
+
             }
             catch (Exception ex)
             {

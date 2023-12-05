@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:ns2="http://www.w3.org/2005/Atom" xmlns:ns3="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0">
+    <Document>
+        <Placemark id="08055570">
+            <Point>
+                <altitudeMode>clampToGround</altitudeMode>
+                <coordinates>-96.9355608,32.86984906</coordinates>
+            </Point>
+            <styleUrl>#ot</styleUrl>
+            <name>08055570</name>
+            <description>&lt;TABLE&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;&lt;B&gt;Site:&lt;/B&gt;08055570&lt;/TD&gt;&lt;/TR&gt;&lt;TR&gt;&lt;TD NOWRAP&gt;&lt;B&gt;Site Name:&lt;/B&gt;Hereford Rd Ofl at Walnut Hill Rd, Irving, TX&lt;/TD&gt;&lt;/TR&gt;&lt;TR&gt;&lt;TD&gt;&lt;A HREF="http://waterdata.usgs.gov/nwis/inventory?agency_code=USGS&amp;site_no=08055570"&gt;Access Data&lt;/A&gt;&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;</description>
+        </Placemark>
+        <Style id="ot">
+            <IconStyle>
+                <color>FFFFFFFF</color>
+                <colorMode>normal</colorMode>
+                <scale>0.25</scale>
+                <Icon>
+                    <href>http://wdr.water.usgs.gov/nwisgmap/images/icons16x16/ot_only.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+    </Document>
+</kml>
