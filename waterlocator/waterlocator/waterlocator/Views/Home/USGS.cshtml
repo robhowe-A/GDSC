@@ -7,8 +7,11 @@
 <p>A table from USGS water services.</p>
 <button onclick="">Get Data</button>
 @{
+    //Goes and fetches the API data for uri, with this example->> "nwis/site/?format=gm&bBox={Western_most},{Southern_most},{Eastern_most},{Northern_most}&siteStatus=all"
     var usgsrequest = new APIRequest();
     usgsrequest.Start();
 
 }
-<div>@usgsrequest.water</div>
+<div>@usgsrequest.kml.Document.Placemark.Point.coordinates</div>
+<div>@usgsrequest.kml.Document.Placemark.description</div>
+

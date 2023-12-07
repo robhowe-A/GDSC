@@ -5,7 +5,7 @@ namespace waterlocator.Models
 {
     class APIRequest
     {
-        public Water water;
+        public Kml kml;
         public void Start()
         {
             //coordinates
@@ -23,7 +23,11 @@ namespace waterlocator.Models
             //google maps option
             string waterservicesOutFile = $"{Directory.GetCurrentDirectory()}\\waterservices.txt";
             string waterservicesBaseAddr = @"https://waterservices.usgs.gov/";
+
+            //this is the API string. the provided coordinates are entered as values to the API's coordinate parameter
+            //https://waterservices.usgs.gov/nwis/site/?format=gm&bBox=-96.958875,32.859052,-96.932789,32.874699&siteStatus=all
             string waterservicesURIRelative = @$"nwis/site/?format=gm&bBox={Western_most},{Southern_most},{Eastern_most},{Northern_most}&siteStatus=all";
+            Console.WriteLine(waterservicesURIRelative);
 
             //Call Fetch
             this.Fetch(waterservicesBaseAddr, waterservicesURIRelative).Wait();
@@ -34,11 +38,10 @@ namespace waterlocator.Models
         {
             try
             {
-                Water waterloc = new Water();
                 FetchRequest apiFetch = new FetchRequest(baseAddress, urlRelative);
-                this.water = await apiFetch.GetAsync();
+                this.kml = await apiFetch.GetAsync();
 
-                Console.WriteLine($"Water: \n{waterloc}");
+                Console.WriteLine($"Kml: \n{kml}");
 
             }
             catch (Exception ex)

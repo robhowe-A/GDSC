@@ -21,7 +21,7 @@ namespace waterlocator.Models
         }
         private HttpClient httpClient = new HttpClient();
 
-        public async Task<Water> GetAsync()
+        public async Task<Kml> GetAsync()
         {
             using HttpResponseMessage response = await httpClient.GetAsync(this.urlRelative);
 
@@ -29,20 +29,23 @@ namespace waterlocator.Models
 
             var contentText = await response.Content.ReadAsStringAsync();
             Console.WriteLine($"result: \n{contentText}");
-            var mySerializer = new XmlSerializer(typeof(Water));
-            var water = new Water();
+            var mySerializer = new XmlSerializer(typeof(Kml));
+            Kml kml;
             using (TextReader reader = new StringReader(contentText))
             {
-                water = (Water)mySerializer.Deserialize(reader);
+                kml = (Kml)mySerializer.Deserialize(reader);
+                Console.WriteLine($"kml.document->altitudeMode is: {kml.Document.Placemark.Point.altitudeMode}");
+                Console.WriteLine($"kml.document->coordinates is: {kml.Document.Placemark.Point.coordinates}");
+
             }
 
 
-            if (water == null)
+            if (kml == null)
             {
-                return new Water();
+                return new Kml();
             }
 
-            return water; 
+            return kml; 
         }
     }
 }
