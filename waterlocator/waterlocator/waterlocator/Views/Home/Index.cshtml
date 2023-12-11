@@ -1,8 +1,20 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using System.Web
+@using waterlocator.Models;
+@{
+    ViewData["USGS"] = "USGS Water";
 }
+<h1>@ViewData["USGS"]</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<p>A table from USGS water services.</p>
+<button onclick="">Get Data</button>
+@{
+    //Goes and fetches the API data for uri, with this example->> "nwis/site/?format=gm&bBox={Western_most},{Southern_most},{Eastern_most},{Northern_most}&siteStatus=all"
+    var usgsrequest = new APIRequest();
+    usgsrequest.Start();
+
+    var Msg = usgsrequest.kml.Document.Placemark.description;
+
+}
+<div>@usgsrequest.kml.Document.Placemark.Point.coordinates</div>
+<div>@Html.Raw(HttpUtility.HtmlDecode(Msg))</div>
+
